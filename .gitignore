@@ -1,0 +1,8 @@
+node_modules
+build
+dist
+tmp
+yarn-error.log
+.DS_Store
+test-results/
+playwright-report/
