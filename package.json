@@ -3,9 +3,7 @@
     "version": "0.0.1",
     "license": "GPL-2.0",
     "private": true,
-    "scripts": {
-        "test": "playwright test"
-    },
+    "scripts": {},
     "dependencies": {},
     "devDependencies": {
         "@playwright/test": "^1.17.2"
