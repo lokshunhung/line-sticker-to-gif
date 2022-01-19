@@ -3,9 +3,18 @@
     "version": "0.0.1",
     "license": "GPL-2.0",
     "private": true,
-    "scripts": {},
-    "dependencies": {},
+    "scripts": {
+        "scrape": "node src/scrape.js",
+        "convert": "node src/convert.js"
+    },
+    "dependencies": {
+        "@babel/register": "7.16.9",
+        "ffmpeg.js": "file:vendor/ffmpeg.js-v4.2.9003-gif20210119.tgz",
+        "node-fetch": "2.6.7"
+    },
     "devDependencies": {
-        "@playwright/test": "^1.17.2"
+        "@playwright/test": "^1.17.2",
+        "@types/babel__core": "7.1.18",
+        "@types/node-fetch": "2.5.12"
     }
 }
