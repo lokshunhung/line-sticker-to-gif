@@ -55,6 +55,7 @@ app.route({
             });
             return imageURLs;
         });
+        await page.close();
 
         reply.header("Content-Type", "application/zip");
         reply.header("Content-Disposition", `attachment; filename=${stickerId}.zip`);
