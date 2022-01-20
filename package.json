@@ -5,12 +5,11 @@
     "private": true,
     "scripts": {
         "scrape": "node src/scrape.js",
-        "convert": "node --experimental-wasm-threads --experimental-wasm-bulk-memory src/convert.js"
+        "convert": "node src/convert.js"
     },
     "dependencies": {
         "@babel/register": "7.16.9",
-        "@ffmpeg/core": "0.10.0",
-        "@ffmpeg/ffmpeg": "0.10.1",
+        "apng2gif-bin": "1.7.1",
         "node-fetch": "2.6.7"
     },
     "devDependencies": {

@@ -1,6 +1,6 @@
+import cp from "child_process";
 import fs from "fs";
 import path from "path";
-import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 async function main() {
     if (process.argv.length !== 3) {
@@ -20,29 +20,17 @@ async function main() {
         await fs.promises.mkdir(convertedDir, { recursive: true });
     }
 
-    const entries = (
-        await fs.promises.readdir(scrapedDir, {
-            withFileTypes: true,
-        })
-    )
+    const entries = (await fs.promises.readdir(scrapedDir, { withFileTypes: true }))
         .filter(entry => entry.isFile() && path.extname(entry.name) === ".png")
-        .map(entry => entry.name);
-
-    const ffmpeg = createFFmpeg({
-        corePath: require.resolve("@ffmpeg/core"),
-        log: true,
-    });
-    await ffmpeg.load();
+        .map(entry => entry.name)
+        .sort((a, b) => parseInt(a) - parseInt(b));
 
     for (const entry of entries) {
-        console.log("Processing: " + entry);
-        const outputName = path.basename(entry, path.extname(entry)) + ".gif";
-
-        ffmpeg.FS("writeFile", entry, await fetchFile(path.join(scrapedDir, entry)));
-        await ffmpeg.run("-y", "-f", "apng", "-i", entry, "-f", "gif", outputName);
-        await fs.promises.writeFile(path.join(convertedDir, outputName), ffmpeg.FS("readFile", outputName));
-
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        console.log(`Processing: ${stickerId}/${entry}`);
+        const inputFilePath = path.join(scrapedDir, entry);
+        cp.spawnSync(require("apng2gif-bin"), [inputFilePath], { stdio: "ignore" });
+        const outputFilePath = inputFilePath.replace(/\.png$/, ".gif");
+        await fs.promises.rename(outputFilePath, outputFilePath.replace(scrapedDir, convertedDir));
     }
 }
 
