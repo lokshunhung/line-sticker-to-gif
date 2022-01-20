@@ -8,15 +8,21 @@
         "scrape": "node --require ./_/register.js ./_/scrape.ts",
         "convert": "node --require ./_/register.js ./_/convert.ts",
         "archive": "node --require ./_/register.js ./_/archive.ts",
-        "app": "node --require ./_/register.js ./src/app.ts"
+        "app": "node --require ./_/register.js ./src/app.ts",
+        "nest-app": "ts-node --project ./src/nest/tsconfig.json ./src/nest/main.ts"
     },
     "dependencies": {
+        "@nestjs/common": "8.2.6",
+        "@nestjs/core": "8.2.6",
+        "@nestjs/platform-fastify": "8.2.6",
         "apng2gif-bin": "1.7.1",
         "archiver": "5.3.0",
         "fastify": "3.27.0",
         "fastify-plugin": "3.0.0",
         "node-fetch": "2.6.7",
-        "playwright-core": "1.17.2"
+        "playwright-core": "1.17.2",
+        "reflect-metadata": "0.1.13",
+        "rxjs": "7.5.2"
     },
     "devDependencies": {
         "@babel/core": "7.16.10",
@@ -36,6 +42,8 @@
         "@babel/register": "7.16.9",
         "@types/archiver": "5.3.1",
         "@types/babel__core": "7.1.18",
-        "@types/node-fetch": "2.5.12"
+        "@types/node-fetch": "2.5.12",
+        "ts-node": "10.4.0",
+        "typescript": "4.5.4"
     }
 }

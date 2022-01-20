@@ -30,3 +30,12 @@ Example: run server and download [11366335](https://store.line.me/stickershop/pr
 $ yarn app  # starts server
 $ curl -X GET http://localhost:3000/api/sticker/11366335 --output 11366335.zip
 ```
+
+---
+
+Example: run nest server and fetch all sticker urls of [11366335](https://store.line.me/stickershop/product/11366335/en)
+
+```sh
+$ yarn nest-app  # starts server
+$ curl -X GET http://localhost:4444/stticker/11366335/urls
+```
