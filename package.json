@@ -4,8 +4,8 @@
     "license": "GPL-2.0",
     "private": true,
     "scripts": {
-        "scrape": "node src/scrape.js",
-        "convert": "node src/convert.js"
+        "scrape": "node --require ./src/register.js ./src/scrape.ts",
+        "convert": "node --require ./src/register.js ./src/convert.ts"
     },
     "dependencies": {
         "@babel/register": "7.16.9",
