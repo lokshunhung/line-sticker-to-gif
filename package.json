@@ -7,11 +7,14 @@
         "postinstall": "playwright install chromium",
         "scrape": "node --require ./src/register.js ./src/scrape.ts",
         "convert": "node --require ./src/register.js ./src/convert.ts",
-        "archive": "node --require ./src/register.js ./src/archive.ts"
+        "archive": "node --require ./src/register.js ./src/archive.ts",
+        "app": "node --require ./src/register.js ./src/app.ts"
     },
     "dependencies": {
         "apng2gif-bin": "1.7.1",
         "archiver": "5.3.0",
+        "fastify": "3.27.0",
+        "fastify-plugin": "3.0.0",
         "node-fetch": "2.6.7",
         "playwright-core": "1.17.2"
     },
