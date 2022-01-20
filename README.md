@@ -15,8 +15,18 @@ $ yarn
 Example: download line sticker pack [14176479](https://store.line.me/stickershop/product/14176479/en)
 
 ```sh
-$ yarn scrape 14176479
-$ yarn convert 14176479
+$ yarn scrape 14176479   # download .png stickers
+$ yarn convert 14176479  # convert downloaded stickers to .gif
+$ yarn archive 14176479  # archives converted .gif as zip
 ```
 
-gif output directory `./dist/14176479`
+output directory `./dist/14176479-converted`
+
+---
+
+Example: run server and download [11366335](https://store.line.me/stickershop/product/11366335/en)
+
+```sh
+$ yarn app  # starts server
+$ curl -X GET http://localhost:3000/api/sticker/11366335 --output 11366335.zip
+```
