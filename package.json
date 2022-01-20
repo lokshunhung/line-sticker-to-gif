@@ -5,11 +5,12 @@
     "private": true,
     "scripts": {
         "scrape": "node src/scrape.js",
-        "convert": "node src/convert.js"
+        "convert": "node --experimental-wasm-threads --experimental-wasm-bulk-memory src/convert.js"
     },
     "dependencies": {
         "@babel/register": "7.16.9",
-        "ffmpeg.js": "file:vendor/ffmpeg.js-v5.0.0-alpha2.tgz",
+        "@ffmpeg/core": "0.10.0",
+        "@ffmpeg/ffmpeg": "0.10.1",
         "node-fetch": "2.6.7"
     },
     "devDependencies": {
