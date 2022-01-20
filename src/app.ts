@@ -17,16 +17,15 @@ const app = fastify({
     logger: true,
 });
 
-app.register(
-    fastifyPlugin(async (app, options) => {
-        const browser = await chromium.launch();
-        app.decorate("browser", browser);
-    })
-);
-
-app.addHook("onClose", async app => {
-    await app.browser.close();
+const browserPlugin = fastifyPlugin(async (app, options) => {
+    const browser = await chromium.launch();
+    app.decorate("browser", browser);
+    app.addHook("onClose", async app => {
+        await app.browser.close();
+    });
 });
+
+app.register(browserPlugin);
 
 app.route({
     method: "GET",
