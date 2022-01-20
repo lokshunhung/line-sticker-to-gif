@@ -30,25 +30,6 @@ app.addHook("onClose", async app => {
 
 app.route({
     method: "GET",
-    url: "/a",
-    handler: async (request, reply) => {
-        reply.header("Content-Type", "application/zip");
-        reply.header("Content-Disposition", `attachment; filename=a.zip`);
-
-        const archive = archiver("zip", { zlib: { level: 9 } });
-        archive.on("error", error => reply.send(error));
-        archive.on("warning", error => reply.send(error));
-
-        archive.append("hi", { name: "a.txt" });
-        archive.append("88", { name: "b.txt" });
-
-        archive.pipe(reply.raw);
-        await archive.finalize();
-    },
-});
-
-app.route({
-    method: "GET",
     url: "/api/sticker/:stickerId",
     handler: async (request, reply) => {
         if (numOutStandingRequests > 10) {
