@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@babel/register": "7.16.9",
-        "ffmpeg.js": "file:vendor/ffmpeg.js-v4.2.9003-gif20210119.tgz",
+        "ffmpeg.js": "file:vendor/ffmpeg.js-v5.0.0-alpha2.tgz",
         "node-fetch": "2.6.7"
     },
     "devDependencies": {

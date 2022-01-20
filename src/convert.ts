@@ -1,4 +1,3 @@
-import cp from "child_process";
 import fs from "fs";
 import path from "path";
 const ffmpeg = require("ffmpeg.js");
@@ -29,7 +28,7 @@ async function main() {
         const outputName = path.basename(entry, path.extname(entry)) + ".gif";
         await new Promise((resolve, reject) => {
             ffmpeg({
-                arguments: ["-y", "-i", "/data/" + entry, "-f", "gif", "/data/" + outputName],
+                arguments: ["-y", "-f", "apng", "-i", "/data/" + entry, "-f", "gif", "/data/" + outputName],
                 mounts: [
                     {
                         type: "NODEFS",

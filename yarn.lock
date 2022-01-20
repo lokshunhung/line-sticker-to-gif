@@ -848,9 +848,9 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-"ffmpeg.js@file:vendor/ffmpeg.js-v4.2.9003-gif20210119.tgz":
-  version "4.2.9003-gif20210119"
-  resolved "file:vendor/ffmpeg.js-v4.2.9003-gif20210119.tgz#478a7bc4a299228593976bb9047a04d0c058adb8"
+"ffmpeg.js@file:vendor/ffmpeg.js-v5.0.0-alpha2.tgz":
+  version "5.0.0-alpha2"
+  resolved "file:vendor/ffmpeg.js-v5.0.0-alpha2.tgz#5a81eeea3a9b7f678a0231cb2ece560a7d62e71b"
 
 fill-range@^7.0.1:
   version "7.0.1"
