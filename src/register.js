@@ -1,6 +1,8 @@
 // @ts-check
 
 // node_modules/@playwright/test/lib/transform.js
+
+// prettier-ignore
 require("@babel/register")({
     cwd: process.cwd(),
     exclude: [/[\\/]node_modules[\\/]/],
@@ -9,19 +11,13 @@ require("@babel/register")({
     presets: [
         [
             require.resolve("@babel/preset-typescript"),
-            {
-                onlyRemoveTypeImports: true,
-            },
+            { onlyRemoveTypeImports: true },
         ],
     ],
     plugins: [
         [require.resolve("@babel/plugin-proposal-class-properties")],
         [require.resolve("@babel/plugin-proposal-numeric-separator")],
-        [
-            require.resolve(
-                "@babel/plugin-proposal-logical-assignment-operators"
-            ),
-        ],
+        [require.resolve("@babel/plugin-proposal-logical-assignment-operators")],
         [require.resolve("@babel/plugin-proposal-nullish-coalescing-operator")],
         [require.resolve("@babel/plugin-proposal-optional-chaining")],
         [require.resolve("@babel/plugin-syntax-json-strings")],

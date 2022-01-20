@@ -5,10 +5,7 @@ import { chromium } from "playwright-core";
 
 export async function main() {
     if (process.argv.length !== 3) {
-        console.log(
-            `Missing sticker id argument, example:\n` +
-                process.argv.slice(0, 2).concat("14176479").join(" ")
-        );
+        console.log(`Missing sticker id argument, example:\n` + process.argv.slice(0, 2).concat("14176479").join(" "));
         process.exit(1);
     }
     const stickerId = process.argv[2];
@@ -20,31 +17,28 @@ export async function main() {
 
     page.on("console", console.log);
 
-    await page.goto(
-        `https://store.line.me/stickershop/product/${stickerId}/en`
-    );
+    console.log(`Loading stickers from https://store.line.me/stickershop/product/${stickerId}/en`);
+    await page.goto(`https://store.line.me/stickershop/product/${stickerId}/en`);
 
     const stickerList = await page.locator("ul.FnStickerList").elementHandle();
 
-    const imageURLs = await stickerList.$$eval(
-        "li.FnStickerPreviewItem",
-        (items) => {
-            const imageURLs: string[] = [];
-            items.forEach((item) => {
-                const preview = JSON.parse(item.dataset.preview);
-                let imageURL = preview.animationUrl;
-                if (!imageURL) imageURL = preview.fallbackStaticUrl;
-                if (!imageURL) imageURL = preview.staticUrl;
-                imageURLs.push(imageURL);
-            });
-            return imageURLs;
-        }
-    );
+    const imageURLs = await stickerList.$$eval("li.FnStickerPreviewItem", items => {
+        const imageURLs: string[] = [];
+        items.forEach(item => {
+            const preview = JSON.parse(item.dataset.preview);
+            let imageURL = preview.animationUrl;
+            if (!imageURL) imageURL = preview.fallbackStaticUrl;
+            if (!imageURL) imageURL = preview.staticUrl;
+            imageURLs.push(imageURL);
+        });
+        return imageURLs;
+    });
 
     await fs.promises.mkdir(outputDir, { recursive: true });
 
     for (let i = 0; i < imageURLs.length; ++i) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        console.log(`Downloading stickers (${i + 1}/${imageURLs.length})`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const imageURL = imageURLs[i];
         const res = await fetch(imageURL);
         const buf = await res.buffer();
