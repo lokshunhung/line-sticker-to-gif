@@ -5,10 +5,10 @@
     "private": true,
     "scripts": {
         "postinstall": "playwright install chromium",
-        "scrape": "node --require ./src/register.js ./src/scrape.ts",
-        "convert": "node --require ./src/register.js ./src/convert.ts",
-        "archive": "node --require ./src/register.js ./src/archive.ts",
-        "app": "node --require ./src/register.js ./src/app.ts"
+        "scrape": "node --require ./_/register.js ./_/scrape.ts",
+        "convert": "node --require ./_/register.js ./_/convert.ts",
+        "archive": "node --require ./_/register.js ./_/archive.ts",
+        "app": "node --require ./_/register.js ./src/app.ts"
     },
     "dependencies": {
         "apng2gif-bin": "1.7.1",
