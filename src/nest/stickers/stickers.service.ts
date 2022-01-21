@@ -1,10 +1,10 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { BrowserService } from "../global/browser.service";
+import { BrowserService } from "../browser/browser.service";
 
 @Injectable()
 export class StickersService {
     private readonly logger = new Logger("StickersService", { timestamp: true });
-    
+
     constructor(
         private readonly browserService: BrowserService,
     ) {}
