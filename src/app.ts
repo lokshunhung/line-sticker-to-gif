@@ -46,7 +46,7 @@ app.route<{
 
         const page = await app.browser.newPage();
         await page.goto(`https://store.line.me/stickershop/product/${stickerId}/en`);
-        const stickerList = await page.locator("ul.FnStickerList").elementHandle();
+        const stickerList = await page.locator("[data-widget='StickerPreview'] ul").elementHandle();
         const imageURLs = await stickerList!.$$eval("li.FnStickerPreviewItem", items => {
             const imageURLs: string[] = [];
             items.forEach(item => {

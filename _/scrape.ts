@@ -4,11 +4,16 @@ import fetch from "node-fetch";
 import { chromium } from "playwright-core";
 
 export async function main() {
-    if (process.argv.length !== 3) {
-        console.log(`Missing sticker id argument, example:\n` + process.argv.slice(0, 2).concat("14176479").join(" "));
+    if (process.argv.length !== 3 && process.argv.length !== 4) {
+        console.log(
+            `Missing sticker id argument, example:\n`
+                .concat(process.argv.slice(0, 2).concat("14176479").join(" "), "\n")
+                .concat(process.argv.slice(0, 2).concat("61e4d2894539264dcc8fa2ea", "--emoji").join(" ")),
+        );
         process.exit(1);
     }
     const stickerId = process.argv[2];
+    const isEmoji = process.argv[3] === "--emoji";
     const outputDir = path.join(__dirname, "..", "dist", stickerId);
 
     const browser = await chromium.launch();
@@ -17,10 +22,11 @@ export async function main() {
 
     page.on("console", console.log);
 
-    console.log(`Loading stickers from https://store.line.me/stickershop/product/${stickerId}/en`);
-    await page.goto(`https://store.line.me/stickershop/product/${stickerId}/en`);
+    const url = `https://store.line.me/${isEmoji ? "emojishop" : "stickershop"}/product/${stickerId}/en`;
+    console.log(`Loading stickers from ${url}`);
+    await page.goto(`${url}`);
 
-    const stickerList = await page.locator("ul.FnStickerList").elementHandle();
+    const stickerList = await page.locator("[data-widget='StickerPreview'] ul").elementHandle();
 
     const imageURLs = await stickerList!.$$eval("li.FnStickerPreviewItem", items => {
         const imageURLs: string[] = [];
