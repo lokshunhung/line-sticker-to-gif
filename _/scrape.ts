@@ -22,10 +22,10 @@ export async function main() {
 
     const stickerList = await page.locator("ul.FnStickerList").elementHandle();
 
-    const imageURLs = await stickerList.$$eval("li.FnStickerPreviewItem", items => {
+    const imageURLs = await stickerList!.$$eval("li.FnStickerPreviewItem", items => {
         const imageURLs: string[] = [];
         items.forEach(item => {
-            const preview = JSON.parse(item.dataset.preview);
+            const preview = JSON.parse(item.dataset.preview!);
             let imageURL = preview.animationUrl;
             if (!imageURL) imageURL = preview.fallbackStaticUrl;
             if (!imageURL) imageURL = preview.staticUrl;

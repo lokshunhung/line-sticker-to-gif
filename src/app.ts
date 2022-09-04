@@ -27,7 +27,11 @@ const browserPlugin = fastifyPlugin(async (app, options) => {
 
 app.register(browserPlugin);
 
-app.route({
+app.route<{
+    Params: {
+        stickerId: string;
+    };
+}>({
     method: "GET",
     url: "/api/sticker/:stickerId",
     handler: async (request, reply) => {
@@ -43,10 +47,10 @@ app.route({
         const page = await app.browser.newPage();
         await page.goto(`https://store.line.me/stickershop/product/${stickerId}/en`);
         const stickerList = await page.locator("ul.FnStickerList").elementHandle();
-        const imageURLs = await stickerList.$$eval("li.FnStickerPreviewItem", items => {
+        const imageURLs = await stickerList!.$$eval("li.FnStickerPreviewItem", items => {
             const imageURLs: string[] = [];
             items.forEach(item => {
-                const preview = JSON.parse(item.dataset.preview);
+                const preview = JSON.parse(item.dataset.preview!);
                 let imageURL = preview.animationUrl;
                 if (!imageURL) imageURL = preview.fallbackStaticUrl;
                 if (!imageURL) imageURL = preview.staticUrl;
