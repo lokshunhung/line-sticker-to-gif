@@ -22,6 +22,13 @@ $ yarn archive 14176479  # archives converted .gif as zip
 
 output directory `./dist/14176479-converted`
 
+Example: download line emoji pack [6124aa4ae72c607c18108562](https://store.line.me/emojishop/product/6124aa4ae72c607c18108562/en)
+
+```sh
+$ yarn scrape 6124aa4ae72c607c18108562 --emoji # download .png stickers
+$ yarn convert 6124aa4ae72c607c18108562        # convert downloaded emojis to .gif
+```
+
 ---
 
 Example: run server and download [11366335](https://store.line.me/stickershop/product/11366335/en)
