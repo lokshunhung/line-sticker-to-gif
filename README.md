@@ -37,3 +37,18 @@ Example: run server and download [11366335](https://store.line.me/stickershop/pr
 $ yarn app  # starts server
 $ curl -X GET http://localhost:3000/api/sticker/11366335 --output 11366335.zip
 ```
+
+---
+
+How to make gif loop infinitely with `ffmpeg` without degrading image quality:
+
+```sh
+$ ffmpeg -i 13.gif \
+      -vf palettegen \
+      13.palette.png && \
+  ffmpeg -i 13.gif \
+      -i 13.palette.png \
+      -filter_complex paletteuse \
+      -loop 0 \
+      13.output.gif
+```
