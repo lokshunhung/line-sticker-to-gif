@@ -42,6 +42,8 @@ $ curl -X GET http://localhost:3000/api/sticker/11366335 --output 11366335.zip
 
 How to make gif loop infinitely with `ffmpeg` without degrading image quality:
 
+Converting one GIF:
+
 ```sh
 $ ffmpeg -i 13.gif \
       -vf palettegen \
@@ -51,4 +53,10 @@ $ ffmpeg -i 13.gif \
       -filter_complex paletteuse \
       -loop 0 \
       13.output.gif
+```
+
+Converting a sticker pack:
+
+```sh
+$ yarn fix-gif-loop 654f0d4061d46e24927970e3 # fixes converted stickers in 654f0d4061d46e24927970e3-converted
 ```
