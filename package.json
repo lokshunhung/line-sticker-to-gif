@@ -7,6 +7,7 @@
         "postinstall": "playwright install chromium",
         "scrape": "node --require ./_/register.js ./_/scrape.ts",
         "convert": "node --require ./_/register.js ./_/convert.ts",
+        "convert2": "node --require ./_/register.js ./_/convert2.ts",
         "fix-gif-loop": "node --require ./_/register.js ./_/fix-gif-loop.ts",
         "archive": "node --require ./_/register.js ./_/archive.ts",
         "app": "node --require ./_/register.js ./src/app.ts"

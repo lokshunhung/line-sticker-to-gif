@@ -60,3 +60,12 @@ Converting a sticker pack:
 ```sh
 $ yarn fix-gif-loop 654f0d4061d46e24927970e3 # fixes converted stickers in 654f0d4061d46e24927970e3-converted
 ```
+
+---
+
+*NEW*: Convert `.apng` to `.gif` with loop fix and colour palette preserve
+
+```sh
+$ yarn scrape 64be327dd7e76e2262d501e9 --emoji
+$ yarn convert2 64be327dd7e76e2262d501e9
+```
